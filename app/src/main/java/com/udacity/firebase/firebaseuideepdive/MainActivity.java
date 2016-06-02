@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         setContentView(R.layout.activity_main);
 
-        final Firebase rootRef = new Firebase("https://deepdivefirebaseui.firebaseio.com/");
+        final Firebase rootRef = new Firebase("https://f-b-ui-deep-dive.firebaseio.com/");
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

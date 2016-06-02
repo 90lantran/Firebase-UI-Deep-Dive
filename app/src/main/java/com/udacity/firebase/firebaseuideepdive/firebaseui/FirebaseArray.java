@@ -126,19 +126,23 @@ class FirebaseArray implements ChildEventListener {
         // is updated. snapshot is the updated DataSnapshot. It is at the same location
         // but some of its data has changed from whatever is currently stored in your
         // local array.
-
+        int index = getIndexForKey(snapshot.getKey());
+        mSnapshots.set(index, snapshot);
         // TODO Don't forget to notify the FirebaseListAdapter that the underlying
         // array has changed. You should use the OnChangedListener.EventType.Changed
         // EventType.
+        notifyChangedListeners(OnChangedListener.EventType.Changed, index);
     }
 
     public void onChildRemoved(DataSnapshot snapshot) {
         // TODO Update the mSnapshots array so that the snapshot which is passed
         // in is removed from the local array.
-
+        int index = getIndexForKey(snapshot.getKey());
+        mSnapshots.remove(index);
         // TODO Don't forget to notify the FirebaseListAdapter that the underlying
         // array has changed. You should use the OnChangedListener.EventType.Removed
         // EventType.
+        notifyChangedListeners(OnChangedListener.EventType.Removed, index);
     }
 
     public void onChildMoved(DataSnapshot snapshot, String previousChildKey) {
